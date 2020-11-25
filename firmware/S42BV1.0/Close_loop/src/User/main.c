@@ -9,12 +9,13 @@
 */
 
 // JaSw: TODO
+// - prevent accidently starting calibration from menu
 // - A lot of cleaning up!!!
 // - Allow to change and store different serial baud rates
 // - See that serial commands does not interfere with motion
 // - Support for 0.9° steppers
 // - Check for unused pins and make them inputs with pullups
-// - Add open/close mode selection to OLED menu
+// - Add open/close mode selection to OLED menu <-- done
 
 
 #include "main.h"
@@ -342,7 +343,7 @@ void OledMenu(void)
     }
   }
 
-  if ((key & KEY_PRESSED_BACK) > 0)
+  if ((key & KEY_PRESSED_BACK) > 0)	// middle button
   {
     // Slow down the rate at which this key can be used
     if ((tickCount - prevTickCount) > 250)
