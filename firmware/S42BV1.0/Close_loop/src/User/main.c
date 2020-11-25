@@ -6,10 +6,11 @@
  * Contributors:
  * - Vsion Yang (2019.10.31)
  * - Jan Swanepoel
+ * - Michael Paeke aka spock
 */
 
 // JaSw: TODO
-// - prevent accidently starting calibration from menu
+// - prevent starting calibration by accident if entering the menu <-- done by spock
 // - A lot of cleaning up!!!
 // - Allow to change and store different serial baud rates
 // - See that serial commands does not interfere with motion
