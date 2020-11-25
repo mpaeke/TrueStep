@@ -1002,7 +1002,7 @@ static void MX_GPIO_Init(void)
 
 void ReadDIPSwitches()
 {
-  // Step angle switches
+  // Step angle switches - ON=0 OFF=1 ??
   if((SET1==1) && (SET2==1))
     stepangle=16;
   else if((SET1==0) && (SET2==1))
