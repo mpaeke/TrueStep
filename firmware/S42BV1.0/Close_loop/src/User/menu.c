@@ -80,7 +80,7 @@ void Menu_Register_Clear(clearFunc_t clearFunc)
 void Menu_Init(struct Menu *menu)
 {
     menu->itemCount = 0;
-    menu->cursorRow = 1;        // enter to menu at row 1 to prevent start calibration by accident if pressing action button twice
+    menu->cursorRow = 1;        //spock: enter menu at row 1 to prevent start calibration by accident if pressing action button twice
     menu->menuPage = 0;
     
     for (int i = 0; i < MENU_MAX_ITEMS; i++)
