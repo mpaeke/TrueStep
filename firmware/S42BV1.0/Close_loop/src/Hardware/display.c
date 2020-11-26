@@ -73,7 +73,7 @@ void Changer_ClosedLoopMode(struct Menu *menu, int16_t val)
 void ShowStartupScreen()
 {
     OLED_Clear();                              
-    OLED_ShowString(0,0," TrueStep mod ");
+    OLED_ShowString(0,0," TrueStep  X1 ");
 }
 
 
