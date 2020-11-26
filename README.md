@@ -1,5 +1,6 @@
 # TrueStep
 Closed loop stepper motor driver firmware for the BTT S42B-V1.0 board.
+Closed loop stepper motor driver firmware for the BTT S42B-V1.0 board.
 
 **NOTE: This is still a work in progress so use with caution!**
 
