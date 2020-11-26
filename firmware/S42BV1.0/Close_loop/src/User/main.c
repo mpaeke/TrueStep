@@ -80,7 +80,7 @@ int32_t s_1=0;
 int32_t s_sum=0;//
 int32_t r=0;
 int32_t r_1=0;
-uint8_t dir=1;//
+uint8_t dir=0;//spock: changed for Sidewinder X1
 int16_t y=0;//
 int16_t y_1=0;
 int32_t yw=0;//
@@ -194,7 +194,7 @@ int main(void)
 
         closemode = table1[14];
         if(closemode > 1)     //vc: if saved value is not initialized yet
-          closemode = 0;
+          closemode = 1;      //spock: closed mode enabled by default
         if(closemode == 1)
           PID_Cal_value_init();
     }
