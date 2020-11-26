@@ -74,6 +74,7 @@ void ShowStartupScreen()
 {
     OLED_Clear();                              
     OLED_ShowString(0,0," TrueStep  X1 ");
+    LL_mDelay(500); //spock: show splash for 500ms
 }
 
 
