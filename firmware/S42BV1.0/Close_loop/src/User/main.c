@@ -10,7 +10,7 @@
 */
 
 // JaSw: TODO
-// - prevent starting calibration by accident if entering the menu <-- done by spock
+// - Safety question if selecting calibration from menu to prevent starting calibration by accident (can even be started while priting!)
 // - A lot of cleaning up!!!
 // - Allow to change and store different serial baud rates
 // - See that serial commands does not interfere with motion
@@ -80,7 +80,7 @@ int32_t s_1=0;
 int32_t s_sum=0;//
 int32_t r=0;
 int32_t r_1=0;
-uint8_t dir=0;//spock: changed for Sidewinder X1
+uint8_t dir=1;//
 int16_t y=0;//
 int16_t y_1=0;
 int32_t yw=0;//
@@ -194,7 +194,7 @@ int main(void)
 
         closemode = table1[14];
         if(closemode > 1)     //vc: if saved value is not initialized yet
-          closemode = 1;      //spock: closed mode enabled by default
+          closemode = 0;
         if(closemode == 1)
           PID_Cal_value_init();
     }
@@ -354,6 +354,7 @@ void OledMenu(void)
         menuActive = 1;
         OLED_Clear();
         Menu_Show(&menuMain);
+        LL_mDelay(250); //spock: 250ms delay after enter the menu
       }
       else
         Menu_Select_Edit(&menuMain);
@@ -1405,7 +1406,7 @@ void CalibrateEncoder(void)
   table1[4] =3;
   table1[5] =0;
   table1[6] =1;
-  table1[7] =1;
+  table1[7] =0;
   table1[8] =1;
   table1[11]=kp;                  
   table1[12]=ki;
