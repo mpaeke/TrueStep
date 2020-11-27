@@ -23,7 +23,5 @@ void ShowCalibrateCompleteScreen();
 
 void ShowBootloaderScreen();
 
-void ShowUserOK();
-
 #endif
 
