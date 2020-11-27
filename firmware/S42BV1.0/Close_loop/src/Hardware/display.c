@@ -118,15 +118,6 @@ void ShowBootloaderScreen()
     OLED_ShowString(16,45,"Bootloader");
 }
 
-void ShowUserOK()
-{
-  OLED_Clear();
-  OLED_ShowString(0,16,"Start");
-  OLED_ShowString(0,32,"Calibration?");
-  OLED_ShowString(0,48," YES");
-  OLED_ShowString(0,64," NO");
-}
-
 void ExitMenu()
 {
   menuActive = 0;
