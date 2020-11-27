@@ -354,7 +354,7 @@ void OledMenu(void)
         menuActive = 1;
         OLED_Clear();
         Menu_Show(&menuMain);
-        LL_mDelay(250); //spock: 250ms delay after enter the menu
+        LL_mDelay(500); //spock: 500ms delay after enter the menu
       }
       else
         Menu_Select_Edit(&menuMain);
