@@ -1245,7 +1245,9 @@ int16_t Mod(int32_t xMod,int16_t mMod)
            
 void CalibrateEncoder(void) 
 {
-  //spock: calibrate yes/no message implement here	
+  //spock: calibrate yes/no message
+  ShowUserOK();
+  
   int32_t encoderReading=0;    
   int32_t currentencoderReading=0;
   int32_t lastencoderReading=0;        
@@ -1407,7 +1409,7 @@ void CalibrateEncoder(void)
   table1[4] =3;
   table1[5] =0;
   table1[6] =1;
-  table1[7] =0;
+  table1[7] =0;//spock: set default Motor direction for SWX1
   table1[8] =1;
   table1[11]=kp;                  
   table1[12]=ki;
