@@ -6,6 +6,8 @@
 
 struct Menu menuMain;
 
+struct Menu menuYesNo;  //spock:
+
 // Create the menu
 void BuildMenu(void);
 
@@ -22,6 +24,8 @@ void ShowCalibrateOKScreen();
 void ShowCalibrateCompleteScreen();
 
 void ShowBootloaderScreen();
+
+void ShowCalibrateYesNoScreen();
 
 #endif
 

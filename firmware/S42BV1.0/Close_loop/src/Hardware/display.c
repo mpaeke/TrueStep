@@ -18,6 +18,9 @@ struct menuItem menuItemOLEDFreq;
 struct menuItem menuItemSave;
 struct menuItem menuItemExit;
 
+//struct Menu menuYesNo;
+struct menuItem menuItemYes;  //spock: Menu user action yes/no
+struct menuItem menuItemNo;
 
 // Convert to mA by multiplying by 6.5
 uint16_t Converter_Current(uint16_t valueIn)
@@ -116,6 +119,13 @@ void ShowBootloaderScreen()
     OLED_Clear();
     OLED_ShowString(32,25,"Running");
     OLED_ShowString(16,45,"Bootloader");
+}
+
+void ShowCalibrateYesNoScreen()  //spock: Yes/No for calibration screen
+{
+    OLED_Clear();
+    OLED_ShowString(0,2,"     Start     ");
+    OLED_ShowString(0,18,"  Calibration? ");
 }
 
 void ExitMenu()
@@ -221,6 +231,23 @@ void BuildMenu()
 
 }
 
+void BuildMenuYesNo()  //spock: User menu Yes/No
+{
+  // Register function that will be used for drawing
+  Menu_Register_Draw(OLED_ShowString);
+
+  Menu_Register_Clear(OLED_Clear);
+
+  Menu_Item_Init(&menuItemYes);
+  menuItemCalibrate.title = "Yes";
+  menuItemCalibrate.type = MENU_ITEM_TYPE_ACTION;
+  menuItemCalibrate.action = &CalibrateEncoder;
+
+  Menu_Item_Init(&menuItemNo);
+  menuItemCalibrate.title = "No";
+  menuItemCalibrate.type = MENU_ITEM_TYPE_ACTION;
+  menuItemCalibrate.action = &ExitMenu;
+}
 
 //
 void Motor_data_dis(void)
