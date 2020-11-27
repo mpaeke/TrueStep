@@ -1245,9 +1245,8 @@ int16_t Mod(int32_t xMod,int16_t mMod)
            
 void CalibrateEncoder(void) 
 {
-  //spock: calibrate yes/no message
-  ShowUserOK();
-  
+  //spock: ToDo calibrate yes/no message
+    
   int32_t encoderReading=0;    
   int32_t currentencoderReading=0;
   int32_t lastencoderReading=0;        
