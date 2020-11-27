@@ -1,7 +1,8 @@
  /*
  * TrueStep Main
  * 
- * This project has been forked from the original S42B firmware created by Vsion Yang.
+ * This project has been forked from the original TrueStep project by Jan Swanepoel.
+ * The TrueStep project has been forked from the original S42B firmware created by Vsion Yang.
  * 
  * Contributors:
  * - Vsion Yang (2019.10.31)
