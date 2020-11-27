@@ -6,7 +6,7 @@
  * Contributors:
  * - Vsion Yang (2019.10.31)
  * - Jan Swanepoel
- * - Michael Paeke aka spock
+ * - Michael Paeke aka spock (27.11.2020)
 */
 
 // JaSw: TODO
