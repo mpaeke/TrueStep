@@ -79,8 +79,8 @@ void Menu_Register_Clear(clearFunc_t clearFunc)
 
 void Menu_Init(struct Menu *menu)
 {
-    menu->itemCount = 0;
-    menu->cursorRow = 0;
+    menu->itemCount = 1;  //spock: Enter menu @ second item (current)
+    menu->cursorRow = 1;  //spock: Enter menu w/ cursor @ second row
     menu->menuPage = 0;
     
     for (int i = 0; i < MENU_MAX_ITEMS; i++)
