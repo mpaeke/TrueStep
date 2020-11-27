@@ -1,4 +1,4 @@
-/*
+ /*
  * TrueStep Main
  * 
  * This project has been forked from the original S42B firmware created by Vsion Yang.
@@ -10,7 +10,7 @@
 */
 
 // JaSw: TODO
-// - Safety question if selecting calibration from menu to prevent starting calibration by accident (can even be started while priting!)
+// - Enter menu w/ second item (current) to prevent starting calibration by accident (can even be started while priting!) <-- done
 // - A lot of cleaning up!!!
 // - Allow to change and store different serial baud rates
 // - See that serial commands does not interfere with motion
@@ -1408,7 +1408,7 @@ void CalibrateEncoder(void)
   table1[4] =3;
   table1[5] =0;
   table1[6] =1;
-  table1[7] =0;//spock: set default Motor direction for SWX1
+  table1[7] =0;//spock: set default Motor direction to 0 for SWX1
   table1[8] =1;
   table1[11]=kp;                  
   table1[12]=ki;
