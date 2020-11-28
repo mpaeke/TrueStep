@@ -169,7 +169,8 @@ extern int16_t u;
 extern int32_t stepnumber;              // Used in OneStep() function
 extern uint8_t stepangle;
 
-extern uint8_t menuActive;           // JaSw: In-menu = 1 else 0
+extern uint8_t menuActive;              // JaSw: In-menu = 1 else 0
+extern uint8_t menuYesNoActive;         // spock: In-YesNomenu = 1 else 0
 extern volatile uint32_t tickCount;     // JaSw: Counts ticks
 extern volatile uint32_t tim6Counter;   // JaSw: Counts timer 6 interrupts
 extern bool tuningMode;
@@ -233,6 +234,7 @@ extern volatile uint8_t Motor_ENmode_flag; //
 //extern volatile uint8_t close_loop1_flag ;      //
 //extern volatile uint8_t close_loop2_flag ;
 
+void ShowMenuYesNo();
 void CalibrateEncoder(void);
 void StoreCurrentParameters();
 void ChangeOLEDClock();

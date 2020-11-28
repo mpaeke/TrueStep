@@ -1,4 +1,6 @@
 #include "storage.h"
+#include "display.h"
+#include "menu.h"
 
 uint16_t STMFLASH_BUF[STM_SECTOR_SIZE/2];
 
@@ -108,6 +110,12 @@ void StoreCurrentParameters()
   STMFLASH_Write(Data_Store_Address, table1, sizeof(table1));
   NVIC_EnableIRQ(USART1_IRQn);
 
+  ShowSaveScreen();  //spock: Save... message here
+
   LL_mDelay(250);
   LED_L;
+  
+  LL_mDelay(250);
+  OLED_Clear();
+  Menu_Show(&menuMain);
 }

@@ -10,14 +10,16 @@
  * - Michael Paeke aka spock
 */
 
-// JaSw: TODO
-// - Enter menu w/ second item (current) to prevent starting calibration by accident (can even be started while priting!) <-- done
+// JaSw: TODO  -  spock: TODO 
+// - Safety question to prevent starting calibration by accident (could even be started while priting!!) <-- done w/ Yes/No choice by spock
 // - A lot of cleaning up!!!
 // - Allow to change and store different serial baud rates
 // - See that serial commands does not interfere with motion
 // - Support for 0.9° steppers
 // - Check for unused pins and make them inputs with pullups
-// - Add open/close mode selection to OLED menu <-- done
+// - Add open/close mode selection to OLED menu <-- done by JaSw
+// - Encoder healthy / encoder failure OLED message at startup <-- done by spock
+// - OLED message for save menu <-- done by spock
 
 
 #include "main.h"
@@ -113,6 +115,7 @@ uint8_t measure_once_flag=0;
 
 uint8_t nodeId;                         // JaSw: Motor identification when used in network (CAN). FOR FUTURE USE.
 uint8_t menuActive = 0;                 // JaSw: In-menu = 1 else 0
+uint8_t menuYesNoActive = 0;            // spock: flag for Yes/No Menu
 volatile uint32_t tickCount;            // JaSw: Used to count system ticks
 uint32_t prevLoopTickCount;
 volatile uint32_t tim6Counter;          // JaSw: Increases each time timer6 interrupts (100uS)
@@ -159,7 +162,7 @@ int main(void)
     if(Calibration_flag == 0xAA)
     {
         ShowCalibrateOKScreen();
-        LL_mDelay(500);
+        LL_mDelay(1000);
                                             
         Reset_status_flag = 1;                                
 
@@ -177,11 +180,18 @@ int main(void)
         if (CheckHealth() == false)
           for(uint8_t m=0;m<10;m++)
           {
+            ShowEncoderFailureScreen_1();            
             LED_H;
             LL_mDelay(200);
+            ShowEncoderFailureScreen_2();
             LED_L;
             LL_mDelay(200);	
           } 
+          else
+          {
+            ShowEncoderHelthyScreen();
+          }
+          
 
         // Apply parameters read from flash
         Currents = table1[1];
@@ -341,8 +351,16 @@ void OledMenu(void)
   {
     if (menuActive == 1)
     {
-      Menu_Button_Down(&menuMain);
-      Menu_Show(&menuMain);
+      if (menuYesNoActive == 1)
+      {
+       Menu_Button_Down(&menuYesNo);
+       Menu_Show(&menuYesNo); 
+      }
+      else
+      {
+        Menu_Button_Down(&menuMain);
+        Menu_Show(&menuMain);      
+      }      
     }
   }
 
@@ -356,7 +374,7 @@ void OledMenu(void)
         menuActive = 1;
         OLED_Clear();
         Menu_Show(&menuMain);
-        LL_mDelay(500); //spock: 500ms delay after enter the menu
+        LL_mDelay(250); //spock: 250ms delay after enter the menu
       }
       else
         Menu_Select_Edit(&menuMain);
@@ -367,8 +385,16 @@ void OledMenu(void)
   {
     if (menuActive == 1)
     {
-      Menu_Button_Up(&menuMain);
-      Menu_Show(&menuMain);
+      if (menuYesNoActive == 1)
+      {
+       Menu_Button_Up(&menuYesNo);
+       Menu_Show(&menuYesNo); 
+      }
+      else
+      {
+        Menu_Button_Up(&menuMain);
+        Menu_Show(&menuMain);      
+      }      
     }
   }
 
@@ -1246,9 +1272,27 @@ int16_t Mod(int32_t xMod,int16_t mMod)
 
 void ShowMenuYesNo()  //spock
 {
+ 
+ if (menuYesNoActive == 0)
+      {
+        menuYesNoActive = 1;
+        OLED_Clear();
+        Menu_Show(&menuYesNo);
+        ShowCalibrateYesNoScreen();
+        //LL_mDelay(250); //spock: 250ms delay after enter the menu
+      }
+      else
+      {
+        Menu_Select_Edit(&menuYesNo);
+        //ShowCalibrateYesNoScreen();
+      }
+          
+ /*
  OLED_Clear();
- ShowCalibrateYesNoScreen();
+ //ShowCalibrateYesNoScreen();
  Menu_Show(&menuYesNo);
+ ShowCalibrateYesNoScreen();
+  */
 }
 
 void CalibrateEncoder(void) 
