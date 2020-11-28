@@ -146,7 +146,7 @@ void BuildMenu()
   Menu_Item_Init(&menuItemCalibrate);
   menuItemCalibrate.title = "Calibrate";
   menuItemCalibrate.type = MENU_ITEM_TYPE_ACTION;
-  menuItemCalibrate.action = &CalibrateEncoder;
+  menuItemCalibrate.action = &ShowMenuYesNo;  //spock: run Yes/No menu
 
   Menu_Item_Init(&menuItemCurrent);
   menuItemCurrent.title = "Current";
@@ -236,17 +236,21 @@ void BuildMenuYesNo()  //spock: User menu Yes/No
   // Register function that will be used for drawing
   Menu_Register_Draw(OLED_ShowString);
 
-  Menu_Register_Clear(OLED_Clear);
+  //Menu_Register_Clear(OLED_Clear);
 
   Menu_Item_Init(&menuItemYes);
-  menuItemCalibrate.title = "Yes";
-  menuItemCalibrate.type = MENU_ITEM_TYPE_ACTION;
-  menuItemCalibrate.action = &CalibrateEncoder;
+  menuItemYes.title = "Yes";
+  menuItemYes.type = MENU_ITEM_TYPE_ACTION;
+  menuItemYes.action = &CalibrateEncoder;
 
   Menu_Item_Init(&menuItemNo);
-  menuItemCalibrate.title = "No";
-  menuItemCalibrate.type = MENU_ITEM_TYPE_ACTION;
-  menuItemCalibrate.action = &ExitMenu;
+  menuItemNo.title = "No";
+  menuItemNo.type = MENU_ITEM_TYPE_ACTION;
+  menuItemNo.action = &ExitMenu;
+  
+  Menu_Init(&menuYesNo);
+  Menu_Add_Item(&menuYesNo, &menuItemYes);
+  Menu_Add_Item(&menuYesNo, &menuItemNo);
 }
 
 //
