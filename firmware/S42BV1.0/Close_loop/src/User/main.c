@@ -219,7 +219,8 @@ int main(void)
     MX_IWDG_Init();                                             //Idog  Init
 
     OLED_Clear();
-    BuildMenu(); 
+    BuildMenu();
+    BuildMenuYesNo();  //spock
     ShowInfoScreen();
 
     // Main loop
@@ -1243,11 +1244,16 @@ int16_t Mod(int32_t xMod,int16_t mMod)
 	return  temp;
 }
 
-           
+void ShowMenuYesNo()  //spock
+{
+ OLED_Clear();
+ ShowCalibrateYesNoScreen();
+ Menu_Show(&menuYesNo);
+}
+
 void CalibrateEncoder(void) 
 {
-  //spock: ToDo calibrate yes/no message
-    
+      
   int32_t encoderReading=0;    
   int32_t currentencoderReading=0;
   int32_t lastencoderReading=0;        
