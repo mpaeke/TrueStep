@@ -1,6 +1,8 @@
 # TrueStep
 Closed loop stepper motor driver firmware for the BTT S42B-V1.0 board. 
   - Special modified version for Sidewinder X1 by spock
+  - Enhanced Menu Functionality with more Informations shown
+  - Prevents starting Calibration by accident
 
 **NOTE: This is still a work in progress so use with caution!**
 
