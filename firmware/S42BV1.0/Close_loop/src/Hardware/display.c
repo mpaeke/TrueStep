@@ -76,7 +76,7 @@ void Changer_ClosedLoopMode(struct Menu *menu, int16_t val)
 void ShowStartupScreen()
 {
     OLED_Clear();                              
-    OLED_ShowString(0,0," TrueStep  X1 ");
+    OLED_ShowString(0,0,"* TrueStep X1 *");
     LL_mDelay(500); //spock: show splash for 500ms
 }
 
@@ -113,6 +113,13 @@ void ShowCalibrateCompleteScreen()
     OLED_ShowString(0,48,"Reset to Reboot");
 }
 
+void ShowCalibrateRunningScreen()
+{
+    OLED_Clear();
+    OLED_ShowString(0,16," Please wait ");
+    OLED_ShowString(0,32," Calibrating... ");
+    CalibrateEncoder();
+}
 
 void ShowBootloaderScreen()
 {
@@ -123,14 +130,40 @@ void ShowBootloaderScreen()
 
 void ShowCalibrateYesNoScreen()  //spock: Yes/No for calibration screen
 {
+    //OLED_Clear();
+    OLED_ShowString(0,32,"     Start     ");
+    OLED_ShowString(0,48,"  Calibration? ");
+}
+
+void ShowSaveScreen()   //spock: Parameter saved confirmation screen
+{
     OLED_Clear();
-    OLED_ShowString(0,2,"     Start     ");
-    OLED_ShowString(0,18,"  Calibration? ");
+    OLED_ShowString(0,16,"   Parameter    ");
+    OLED_ShowString(0,32,"     saved.     ");
+}
+
+void ShowEncoderHelthyScreen()   //spock: Encoder Healthy Message
+{  
+  OLED_ShowString(16,25,"  Magn. Encoder ");
+  OLED_ShowString(48,45,"     Healthy    ");
+}
+
+void ShowEncoderFailureScreen_1()   //spock: Encoder failure Message on
+{
+  OLED_ShowString(0,25," Magn. Encoder  ");
+  OLED_ShowString(0,45," !! failure !!  ");
+}
+
+void ShowEncoderFailureScreen_2()   //spock: Encoder failure Message off
+{
+  OLED_ShowString(0,25,"                ");
+  OLED_ShowString(0,45,"                ");
 }
 
 void ExitMenu()
 {
   menuActive = 0;
+  menuYesNoActive = 0;  
   OLED_Clear();
   ShowInfoScreen();
 }
@@ -241,7 +274,7 @@ void BuildMenuYesNo()  //spock: User menu Yes/No
   Menu_Item_Init(&menuItemYes);
   menuItemYes.title = "Yes";
   menuItemYes.type = MENU_ITEM_TYPE_ACTION;
-  menuItemYes.action = &CalibrateEncoder;
+  menuItemYes.action = &ShowCalibrateRunningScreen;
 
   Menu_Item_Init(&menuItemNo);
   menuItemNo.title = "No";

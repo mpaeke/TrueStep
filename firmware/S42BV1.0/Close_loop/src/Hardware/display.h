@@ -27,5 +27,13 @@ void ShowBootloaderScreen();
 
 void ShowCalibrateYesNoScreen();
 
+void ShowSaveScreen();
+
+void ShowEncoderHelthyScreen();
+
+void ShowEncoderFailureScreen_1();
+
+void ShowEncoderFailureScreen_2();
+
 #endif
 
