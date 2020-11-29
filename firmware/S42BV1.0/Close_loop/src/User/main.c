@@ -11,15 +11,17 @@
 */
 
 // JaSw: TODO  -  spock: TODO 
-// - Safety question to prevent starting calibration by accident (could even be started while priting!!) <-- done w/ Yes/No choice by spock
 // - A lot of cleaning up!!!
 // - Allow to change and store different serial baud rates
 // - See that serial commands does not interfere with motion
 // - Support for 0.9° steppers
 // - Check for unused pins and make them inputs with pullups
 // - Add open/close mode selection to OLED menu <-- done by JaSw
+//
+// - Safety question to prevent starting calibration by accident (could even be started while priting!!) <-- done w/ Yes/No choice by spock
 // - Encoder healthy / encoder failure OLED message at startup <-- done by spock
 // - OLED message for save menu <-- done by spock
+// - OLED message while Calibrating <-- done by spock
 
 
 #include "main.h"
@@ -190,6 +192,7 @@ int main(void)
           else
           {
             ShowEncoderHelthyScreen();
+            LL_mDelay(1000);
           }
           
 
@@ -374,7 +377,7 @@ void OledMenu(void)
         menuActive = 1;
         OLED_Clear();
         Menu_Show(&menuMain);
-        LL_mDelay(250); //spock: 250ms delay after enter the menu
+        LL_mDelay(125); //spock: 125ms delay after enter the menu
       }
       else
         Menu_Select_Edit(&menuMain);
@@ -1316,7 +1319,8 @@ void CalibrateEncoder(void)
   //enmode=0;
   //NVIC_DisableIRQ(EXTI0_1_IRQn);
   //NVIC_DisableIRQ(EXTI2_3_IRQn);
-                                                              
+
+  //uint8_t stepsize=stepangle;  //spock: store actual steps size to flag                                                            
   dir=1; 
   Output(0,80);
   for(uint8_t m=0;m<4;m++)
@@ -1465,6 +1469,8 @@ void CalibrateEncoder(void)
   table1[12]=ki;
   table1[13]=kd;
   table1[14]=closemode;
+
+  //stepangle=stepsize;  //spock: write back last used steps size
 
   Calibration_flag = 0xAA;    
   STMFLASH_Write(Data_Store_Address,table1,sizeof(table1));
