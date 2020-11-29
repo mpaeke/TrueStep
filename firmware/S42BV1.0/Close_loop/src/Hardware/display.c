@@ -116,7 +116,7 @@ void ShowCalibrateCompleteScreen()
 void ShowCalibrateRunningScreen()
 {
     OLED_Clear();
-    OLED_ShowString(0,16," Please wait ");
+    OLED_ShowString(0,16," Please wait 90\"");
     OLED_ShowString(0,32," Calibrating... ");
     CalibrateEncoder();
 }
@@ -144,8 +144,8 @@ void ShowSaveScreen()   //spock: Parameter saved confirmation screen
 
 void ShowEncoderHelthyScreen()   //spock: Encoder Healthy Message
 {  
-  OLED_ShowString(16,25,"  Magn. Encoder ");
-  OLED_ShowString(48,45,"     Healthy    ");
+  OLED_ShowString(0,25,"  Magn. Encoder ");
+  OLED_ShowString(0,45,"     Healthy    ");
 }
 
 void ShowEncoderFailureScreen_1()   //spock: Encoder failure Message on
