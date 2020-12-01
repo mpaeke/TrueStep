@@ -1,10 +1,10 @@
 # TrueStep
 Closed loop stepper motor driver firmware for the BTT S42B-V1.0 board.
 
-## Special Features
-  - Modified version for Sidewinder X1. All default values are set. You just have to set your step size (16 by default). done by spock
+## Special Features - managed by spock
+  - Modified version for Sidewinder X1. All default values are set. You just have to set your step size (16 by default).
   - Enhanced Menu Functionality with more Informations to be shown
-  - Prevents starting Calibration by accident with Yes/No confirmation
+  - Yes/No confirmation before Calibration before it starts Calibration
 
 **NOTE: This is still a work in progress so use with caution!**
 
