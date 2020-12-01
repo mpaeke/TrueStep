@@ -41,6 +41,7 @@ void OLED_WR_Byte(uint8_t dat,uint8_t cmd)
 {	
 	uint8_t i;	
 	//LL_TIM_DisableCounter(TIM6);				//JaSw: Maybe helps with OLED issues but haven't tested yet.
+	                                                        // spock: Helps with OLED issues but crashes the motor driver
     if(cmd)    
         OLED_RS_H; 
     else 
