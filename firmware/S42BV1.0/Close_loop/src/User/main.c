@@ -18,11 +18,10 @@
 // - Check for unused pins and make them inputs with pullups
 // - Add open/close mode selection to OLED menu <-- done by JaSw
 //
-// - Yes/No confirmation to prevent starting calibration by accident (could even be started while priting!!) <-- done w/ Yes/No confirmation by spock
+// - Safety question to prevent starting calibration by accident (could even be started while priting!!) <-- done w/ Yes/No choice by spock
 // - Encoder healthy / encoder failure OLED message at startup <-- done by spock
 // - OLED message for save menu <-- done by spock
 // - OLED message while Calibrating <-- done by spock
-// - OLED Timer to fix OLED crashing issue
 
 
 #include "main.h"
