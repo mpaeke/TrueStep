@@ -18,10 +18,11 @@
 // - Check for unused pins and make them inputs with pullups
 // - Add open/close mode selection to OLED menu <-- done by JaSw
 //
-// - User confirmation to prevent starting calibration by accident (could even be started while priting!!) <-- done w/ Yes/No confirmation by spock
+// - Yes/No confirmation to prevent starting calibration by accident (could even be started while priting!!) <-- done w/ Yes/No confirmation by spock
 // - Encoder healthy / encoder failure OLED message at startup <-- done by spock
 // - OLED message for save menu <-- done by spock
 // - OLED message while Calibrating <-- done by spock
+// - OLED Timer to fix OLED crashing issue
 
 
 #include "main.h"
@@ -1314,13 +1315,20 @@ void CalibrateEncoder(void)
   uint32_t address=0x08008000;//
 
   uint16_t lookupAngle;
-		
+  uint16_t actual_stepangle=table1[3]; //spock: actual stepangle (stepsize = 64/stepangle) 1=64, 2=32, 4=16, ...
+
   // Disable DIR en EN interrupts while calibrating, to be tested still...  
   //enmode=0;
   //NVIC_DisableIRQ(EXTI0_1_IRQn);
   //NVIC_DisableIRQ(EXTI2_3_IRQn);
 
-  //uint8_t stepsize=stepangle;  //spock: store actual steps size to flag                                                            
+  if(actual_stepangle<1 || actual_stepangle>32)
+  {
+    table1[3]=1; //spock: set stepsize to 64 by default
+  }
+  
+  actual_stepangle=table1[3];  //spock: store actual steps size to flag
+                                                         
   dir=1; 
   Output(0,80);
   for(uint8_t m=0;m<4;m++)
@@ -1459,7 +1467,7 @@ void CalibrateEncoder(void)
   table1[0] =0xAA;                
   table1[1] =128;
   table1[2] =16;
-  table1[3] =4;
+  table1[3] =actual_stepangle;  //was 4 (stepsize 16) //spock: set step angle to previous value
   table1[4] =3;
   table1[5] =0;
   table1[6] =1;
