@@ -10,7 +10,7 @@ Board version v1.1 is highly recommended to get rid of the OLED issues.
 
 **NOTE: This is still a work in progress so use with caution!**
 
-This project was forked from the BIGTREETECH-S42B-V1.0 repo. Since I started to make some large modifications to the original work I decided to rename the project.
+This project was forked from the TrueStep repo (BIGTREETECH-S42B-V1.0 repo). Since I started to make some large modifications to the original work I decided to rename the project.
 
 ## General Features
 - New UART [interface](SerialInterface.md) 
